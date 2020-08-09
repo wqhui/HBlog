@@ -13,7 +13,8 @@
 </template>
 
 <script>
-//import { invokeSimpleGetSrevice } from "../../service/proxy";
+import { invokeSimpleGetSrevice } from "../../service/proxy";
+import { ROUTER_NAMES } from "../../const/routerConst";
 export default {
   data() {
     return {
@@ -25,12 +26,12 @@ export default {
     blogInfo() {
       return [
         {
-          id: "archives",
+          id: this.ROUTER_NAMES.ARCHIVES,
           count: this.$data.blogCount,
           title: "日志"
         },
         {
-          id: "tags",
+          id: this.ROUTER_NAMES.TAGS,
           count: this.$data.tagsCount,
           title: "标签"
         }
@@ -45,19 +46,22 @@ export default {
       this.$router.push({name});
     }
   },
+  beforeCreate() {
+    this.ROUTER_NAMES = ROUTER_NAMES;
+  },
   created() {
-    // invokeSimpleGetSrevice("api/article/getAllArticleCount", {}).then(res => {
-    //   const { data, code } = res;
-    //   if (code === "200") {
-    //     this.$data.blogCount = data;
-    //   }
-    // });
-    // invokeSimpleGetSrevice("api/tags/getAllTagsCount", {}).then(res => {
-    //   const { data, code } = res;
-    //   if (code === "200") {
-    //     this.$data.tagsCount = data;
-    //   }
-    // });
+    invokeSimpleGetSrevice("api/article/getAllArticleCount", {}).then(res => {
+      const { data, code } = res;
+      if (code === "200") {
+        this.$data.blogCount = data;
+      }
+    });
+    invokeSimpleGetSrevice("api/tags/getAllTagsCount", {}).then(res => {
+      const { data, code } = res;
+      if (code === "200") {
+        this.$data.tagsCount = data;
+      }
+    });
   }
 };
 </script>

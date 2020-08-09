@@ -68,6 +68,29 @@
     white-space: nowrap;
 }
 
+@underline-hover:{
+    &::before,&::after {
+        content: "";
+        background: @main-color;
+        position: absolute;
+        height: 2px;
+        bottom: 0;
+        width: 0;
+      }
+      &::before {
+        right:50%;
+      }
+      &::after {
+        left:50%;
+      }
+      &:hover {
+        &::before,&::after {
+          width: 50%;
+          transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+      }
+}
+
 html {
     height: 100%;
     font-size: 16px;

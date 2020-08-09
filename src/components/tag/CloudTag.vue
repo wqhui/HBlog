@@ -52,12 +52,10 @@ export default {
     cursor: pointer;
     padding: 0.625rem;
     box-sizing: border-box;
-    border-bottom: 2px solid;
-    border-color: transparent;
-    &:hover {
-      border-color: @main-color;
-      transition: border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    }
+    // border-bottom: 2px solid;
+    // border-color: transparent;
+    position: relative;
+    @underline-hover();
   }
 }
 </style>

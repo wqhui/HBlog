@@ -1,7 +1,7 @@
 <template>
   <div class="master-box">
-    <img class="master-pic" src="../../assets/logo.png" />
-    <h3 class="nick-name">{{masterInfo.nickName}}</h3>
+    <img class="master-pic" src="../../assets/img/master.png" @click="onClick" />
+    <h3 class="nick-name" @click="onClick">{{masterInfo.nickName}}</h3>
     <div class="motto">{{masterInfo.motto}}</div>
     <div class="master-box-links">
       <a
@@ -30,12 +30,13 @@
 
 <script>
 import { LOGO_PATH, LOGO_COLOR } from "../../const/logoConst";
+import { ROUTER_NAMES } from "../../const/routerConst";
 export default {
   data() {
     return {
       masterInfo: {
-        pic: "../../assets/logo.png",
-        nickName: "Snns丶",
+        pic: "../../assets/img/master.png",
+        nickName: "Qssn丶",
         motto: "相似的人，总会相逢",
         links: [
           {
@@ -77,9 +78,18 @@ export default {
       ]
     };
   },
+  methods: {
+    onClick() {
+      if (this.$route.path.indexOf(this.ROUTER_NAMES.ABOUT) > -1) {
+        return;
+      }
+      this.$router.push({ path: this.ROUTER_NAMES.ABOUT });
+    }
+  },
   beforeCreate() {
     this.LOGO_PATH = LOGO_PATH;
     this.LOGO_COLOR = LOGO_COLOR;
+    this.ROUTER_NAMES = ROUTER_NAMES;
   }
 };
 </script>
@@ -94,7 +104,8 @@ export default {
 
   .master-pic {
     // align-self: center;
-    width: 50px;
+    cursor: pointer;
+    width: 80px;
     border-radius: 50px;
     box-shadow: -2px 0px 5px -3px rgba(0, 0, 0, 0.06),
       /*左边阴影*/ 0px -2px 5px -3px rgba(0, 0, 0, 0.06),
@@ -104,6 +115,9 @@ export default {
   }
   .nick-name {
     margin: 10px 0;
+    cursor: pointer;
+    position: relative;
+    @underline-hover();
   }
   .motto {
     color: @minor-font-color;
@@ -115,7 +129,7 @@ export default {
     align-items: center;
     margin: 0.75rem 0;
     .master-box-links-item {
-      padding:0.5rem;
+      padding: 0.5rem;
       height: 1.25rem;
       text-decoration: none;
       color: @main-font-color;
