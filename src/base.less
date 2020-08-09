@@ -1,0 +1,112 @@
+@main-color: #1890ff;
+@main-deep-color: #175199;
+@main-light-color: #e6f7ff;
+
+@main-font-color: #222222;
+@minor-font-color: #b2bac2;
+
+@selct-bg-color: rgba(255,255,255,0.3);
+@minor-bg-color: #EEEEEE;
+
+
+@mul-color-grn: #43D480;
+@mul-color-ylw: #FFCF00;
+@mul-color-prp: #5868D1;
+
+@hor-ul: {
+    display: flex;
+}
+
+.mimicry-box {
+    border-radius: 5px;
+    //background: #fff;
+    box-shadow:
+        -2px 0px 5px -3px rgba(0, 0, 0, .06),
+        /*左边阴影*/
+        0px -2px 5px -3px rgba(0, 0, 0, .06),
+        /*上边阴影*/
+        0 2px 5px -1px rgba(0, 0, 0, .12), //底部阴影
+        2px 0 5px -1px rgba(0, 0, 0, .12); //右边阴影
+    /*一个溢出的盒子作为边框，添加背景后形成光源效果*/
+    // position: relative;
+    // ::before {
+    //     content: '';
+    //     position: absolute;
+    //     top: -2px;
+    //     left: -2px;
+    //     right: 5px;
+    //     bottom: 5px;
+    //     /*三色渐变，中间为背景色，融入背景*/
+    //     background: linear-gradient(235deg,#fff,#fff);
+    //     z-index: -1;
+    //     /*元素堆叠顺序*/
+
+    // }
+
+    // /*另一个溢出的盒子，模糊形成光晕效果*/
+    // ::after {
+    //     content: '';
+    //     position: absolute;
+    //     top: -2px;
+    //     left: -2px;
+    //     right: 5px;
+    //     bottom: 5px;
+    //     /*三色渐变，中间为背景色，融入背景*/
+    //     background: linear-gradient(235deg,#fff,#fff);
+    //     z-index: -2;
+    //     /*添加模糊滤镜*/
+    //     filter: blur(2px);
+    // }
+
+
+
+}
+
+@one-line-elps: {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+html {
+    height: 100%;
+    font-size: 16px;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    margin: 0;
+    color: @main-font-color;
+}
+
+li {
+    list-style: none
+}
+
+a{
+    text-decoration: none;
+}
+
+
+#app {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        //可以实现高斯模糊
+        content: '';
+        background:transparent;
+        // background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        filter: blur(15px);
+        z-index: -1;
+        transform: scale(1.1)
+    }
+}
